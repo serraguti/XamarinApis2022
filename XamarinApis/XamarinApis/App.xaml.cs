@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinApis.Services;
 using XamarinApis.Views;
 
 namespace XamarinApis
