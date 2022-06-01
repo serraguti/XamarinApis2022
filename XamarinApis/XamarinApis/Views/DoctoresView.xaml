@@ -5,7 +5,7 @@
              xmlns:viewmodels="clr-namespace:XamarinApis.ViewModels"
              xmlns:local="clr-namespace:XamarinApis">
     <ContentPage.Content>
-        <StackLayout
+        <StackLayout x:Name="stackDoctores"
             BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
             , Path=DoctoresListViewModel}">
             <Label Text="Doctores Api" FontSize="40"
@@ -19,6 +19,21 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Apellido}"
                                        FontSize="25" TextColor="Blue"/>
+                                <Button 
+ Command="{Binding BindingContext.ShowDoctor, Source={x:Reference stackDoctores}}"
+CommandParameter="{Binding IdDoctor}"                                    
+                                    Text="Details"
+                                    HorizontalOptions="End"/>
+                                <ImageButton Source="details.png" 
+                                             WidthRequest="50"
+ Command="{Binding BindingContext.ShowDoctor, Source={x:Reference stackDoctores}}"
+CommandParameter="{Binding IdDoctor}"                                    
+                                    HorizontalOptions="End"/>
+                                <Button HorizontalOptions="End"
+                                        Text="Delete"
+                                        TextColor="Red"
+Command="{Binding BindingContext.DeleteDoctor, Source={x:Reference stackDoctores}}"
+CommandParameter="{Binding IdDoctor}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

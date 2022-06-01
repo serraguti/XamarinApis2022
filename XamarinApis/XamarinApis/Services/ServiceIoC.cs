@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using XamarinApis.ViewModels;
 
@@ -21,6 +24,18 @@ namespace XamarinApis.Services
             //REGISTRAMOS TODO LO QUE VAYAMOS A INYECTAR
             builder.RegisterType<ServiceApiDoctores>();
             builder.RegisterType<DoctoresListViewModel>();
+            //BUSCAMOS EL FICHERO DE SETTINGS
+            string resourceName = "XamarinApis.appsettings.json";
+            Stream stream =
+                GetType().GetTypeInfo().Assembly
+                .GetManifestResourceStream(resourceName);
+            //CREAMOS EL OBJETO ICONFIGURATION
+            IConfiguration configuration =
+                new ConfigurationBuilder().AddJsonStream(stream)
+                .Build();
+            //INCLUIMOS EL OBJETO CONFIGURATION DENTRO DE LA 
+            //INYECCION DE DEPENDENCIAS
+            builder.Register<IConfiguration>(x => configuration);
             this.container = builder.Build();
         }
 
