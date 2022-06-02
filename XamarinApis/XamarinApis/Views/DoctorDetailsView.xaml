@@ -18,6 +18,9 @@
             <Button Text="Eliminar"
                     TextColor="Red"
                     Command="{Binding DeleteDoctor}"/>
+            <Button Text="Favorito"
+                    TextColor="Blue"
+                    Command="{Binding SeleccionarFavorito}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

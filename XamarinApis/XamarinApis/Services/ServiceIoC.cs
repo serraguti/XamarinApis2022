@@ -25,6 +25,8 @@ namespace XamarinApis.Services
             builder.RegisterType<ServiceApiDoctores>();
             builder.RegisterType<DoctoresListViewModel>();
             builder.RegisterType<DoctorDetailsViewModel>();
+            builder.RegisterType<SessionService>().SingleInstance();
+            builder.RegisterType<DoctoresFavoritosViewModel>();
             //BUSCAMOS EL FICHERO DE SETTINGS
             string resourceName = "XamarinApis.appsettings.json";
             Stream stream =
@@ -38,6 +40,24 @@ namespace XamarinApis.Services
             //INYECCION DE DEPENDENCIAS
             builder.Register<IConfiguration>(x => configuration);
             this.container = builder.Build();
+        }
+
+        public DoctoresFavoritosViewModel DoctoresFavoritosViewModel
+        {
+            get
+            {
+                return this.container.Resolve<DoctoresFavoritosViewModel>();
+            }
+        }
+
+        //NECESITAMOS UNA PROPIEDAD PARA RECUPERAR LA SESSION
+        //DESDE CUALQUIER LUGAR
+        public SessionService SessionService
+        {
+            get
+            {
+                return this.container.Resolve<SessionService>();
+            }
         }
 
         //CREAMOS LAS PROPIEDADES PARA RECUPERAR LOS VIEWMODELS 

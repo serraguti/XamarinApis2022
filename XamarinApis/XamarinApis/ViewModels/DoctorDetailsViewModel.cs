@@ -36,6 +36,22 @@ namespace XamarinApis.ViewModels
             }
         }
 
+        public Command SeleccionarFavorito
+        {
+            get
+            {
+                return new Command(async() =>
+                {
+                    //BUSCAMOS LA CLASE SESSION
+                    SessionService session =
+                    App.ServiceLocator.SessionService;
+                    session.Favoritos.Add(this.Doctor);
+                    await Application.Current.MainPage
+                    .DisplayAlert("Alert", "Doctor almacenado", "OK");
+                });
+            }
+        }
+
         private Doctor _Doctor;
 
         public Doctor Doctor

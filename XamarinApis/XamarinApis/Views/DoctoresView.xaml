@@ -12,6 +12,9 @@
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Text="Mostrar doctores" Command="{Binding MostrarDoctores}"/>
+            <Button Text="Favoritos" 
+                    Command="{Binding MostrarFavoritos}"
+                    TextColor="Blue"/>
             <ListView ItemsSource="{Binding Doctores}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -34,6 +37,11 @@ CommandParameter="{Binding IdDoctor}"
                                         TextColor="Red"
 Command="{Binding BindingContext.DeleteDoctor, Source={x:Reference stackDoctores}}"
 CommandParameter="{Binding IdDoctor}"/>
+                                <Button HorizontalOptions="End"
+                                        Text="Favorito"
+                                        TextColor="Blue"
+Command="{Binding BindingContext.SeleccionarFavorito,Source={x:Reference stackDoctores}}"                                        
+CommandParameter="{Binding .}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
