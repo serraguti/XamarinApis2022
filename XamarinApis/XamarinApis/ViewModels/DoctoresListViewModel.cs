@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinApis.Base;
+using XamarinApis.Helpers;
 using XamarinApis.Models;
 using XamarinApis.Services;
 using XamarinApis.Views;
@@ -14,10 +15,13 @@ namespace XamarinApis.ViewModels
     public class DoctoresListViewModel: ViewModelBase
     {
         private ServiceApiDoctores service;
+        private HelperUtilities helperUtilities;
 
-        public DoctoresListViewModel(ServiceApiDoctores service)
+        public DoctoresListViewModel(ServiceApiDoctores service
+           , HelperUtilities helperUtilities )
         {
             this.service = service;
+            this.helperUtilities = helperUtilities;
             //METODO ASINCRONO DENTRO DE CONSTRUCTOR
             Task.Run(async () =>
             {
@@ -48,10 +52,7 @@ namespace XamarinApis.ViewModels
             {
                 return new Command(async () =>
                 {
-                    List<Doctor> data =
-                    await this.service.GetDoctoressAsync();
-                    this.Doctores =
-                    new ObservableCollection<Doctor>(data);
+                    await this.LoadDoctoresAsync();
                 });
             }
         }
@@ -128,6 +129,12 @@ namespace XamarinApis.ViewModels
         {
             List<Doctor> data =
                 await this.service.GetDoctoressAsync();
+            //BUSCAR SI LOS DOCTORES QUE HEMOS TRAIDO SON FAVORITOS
+            //foreach (Doctor doc in data)
+            //{
+            //    doc.IsFavorite =
+            //        this.helperUtilities.IsFavoriteDoctor(doc.IdDoctor);
+            //}
             this.Doctores =
             new ObservableCollection<Doctor>(data);
         }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using XamarinApis.Helpers;
 using XamarinApis.ViewModels;
 
 namespace XamarinApis.Services
@@ -27,6 +28,7 @@ namespace XamarinApis.Services
             builder.RegisterType<DoctorDetailsViewModel>();
             builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<DoctoresFavoritosViewModel>();
+            builder.RegisterType<HelperUtilities>();
             //BUSCAMOS EL FICHERO DE SETTINGS
             string resourceName = "XamarinApis.appsettings.json";
             Stream stream =
@@ -40,6 +42,14 @@ namespace XamarinApis.Services
             //INYECCION DE DEPENDENCIAS
             builder.Register<IConfiguration>(x => configuration);
             this.container = builder.Build();
+        }
+
+        public HelperUtilities HelperUtilities
+        {
+            get
+            {
+                return this.container.Resolve<HelperUtilities>();
+            }
         }
 
         public DoctoresFavoritosViewModel DoctoresFavoritosViewModel

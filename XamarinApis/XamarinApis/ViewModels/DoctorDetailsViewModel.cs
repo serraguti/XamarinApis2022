@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using XamarinApis.Base;
+using XamarinApis.Helpers;
 using XamarinApis.Models;
 using XamarinApis.Services;
 
@@ -11,10 +12,13 @@ namespace XamarinApis.ViewModels
     public class DoctorDetailsViewModel: ViewModelBase
     {
         private ServiceApiDoctores service;
+        private HelperUtilities helperUtilities;
 
-        public DoctorDetailsViewModel(ServiceApiDoctores service)
+        public DoctorDetailsViewModel(ServiceApiDoctores service
+            , HelperUtilities helperUtilities)
         {
             this.service = service;
+            this.helperUtilities = helperUtilities;
         }
 
         public Command DeleteDoctor
@@ -59,6 +63,8 @@ namespace XamarinApis.ViewModels
             get { return this._Doctor; }
             set {
                 this._Doctor = value;
+                //this._Doctor.IsFavorite 
+                //    = this.helperUtilities.IsFavoriteDoctor(_Doctor.IdDoctor);
                 OnPropertyChanged("Doctor");
             }
         }
