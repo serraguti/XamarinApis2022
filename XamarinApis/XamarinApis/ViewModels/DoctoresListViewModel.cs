@@ -23,6 +23,11 @@ namespace XamarinApis.ViewModels
             {
                 await this.LoadDoctoresAsync();
             });
+            MessagingCenter.Subscribe<DoctoresListViewModel>
+                (this, "RELOADDOCTORES", async (sender) =>
+                {
+                    await this.LoadDoctoresAsync();
+                });
         }
 
         private ObservableCollection<Doctor> _Doctores;
@@ -62,8 +67,9 @@ namespace XamarinApis.ViewModels
                     await this.service.FindDoctorAsync((int)idDoctor);
                     //CREAMOS LA VISTA DETALLES
                     DoctorDetailsView view = new DoctorDetailsView();
-                    //CREAMOS EL VIEWMODEL
-                    DoctorDetailsViewModel viewmodel = new DoctorDetailsViewModel();
+                    //BUSCAMOS EL VIEWMODEL DENTRO DE IoC
+                    DoctorDetailsViewModel viewmodel =
+                    App.ServiceLocator.DoctorDetailsViewModel;
                     //PASAMOS LOS DATOS AL VIEWMODEL
                     viewmodel.Doctor = doctor;
                     //ENLAZAMOS LA VISTA CON EL VIEWMODEL

@@ -24,6 +24,7 @@ namespace XamarinApis.Services
             //REGISTRAMOS TODO LO QUE VAYAMOS A INYECTAR
             builder.RegisterType<ServiceApiDoctores>();
             builder.RegisterType<DoctoresListViewModel>();
+            builder.RegisterType<DoctorDetailsViewModel>();
             //BUSCAMOS EL FICHERO DE SETTINGS
             string resourceName = "XamarinApis.appsettings.json";
             Stream stream =
@@ -46,6 +47,14 @@ namespace XamarinApis.Services
             get
             {
                 return this.container.Resolve<DoctoresListViewModel>();
+            }
+        }
+
+        public DoctorDetailsViewModel DoctorDetailsViewModel
+        {
+            get
+            {
+                return this.container.Resolve<DoctorDetailsViewModel>();
             }
         }
     }

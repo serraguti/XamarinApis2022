@@ -17,11 +17,6 @@ namespace XamarinApis.ViewModels
             this.service = service;
         }
 
-        public DoctorDetailsViewModel()
-        {
-            this.service = new ServiceApiDoctores();
-        }
-
         public Command DeleteDoctor
         {
             get
@@ -29,6 +24,12 @@ namespace XamarinApis.ViewModels
                 return new Command(async () =>
                 {
                     await this.service.DeleteDoctorAsync(Doctor.IdDoctor);
+                    //ENVIAMOS UN MENSAJE PARA RECARGAR LOS DATOS EN EL METODO
+                    MessagingCenter.Send<DoctoresListViewModel>
+                    (App.ServiceLocator.DoctoresListViewModel, "RELOADDOCTORES");
+                    await Application.Current.MainPage
+                    .DisplayAlert("Alert",
+                    "Doctor " + Doctor.Apellido + " eliminado", "OK");
                     await
                     Application.Current.MainPage.Navigation.PopModalAsync();
                 });
