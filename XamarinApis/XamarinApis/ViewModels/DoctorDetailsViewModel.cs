@@ -16,6 +16,12 @@ namespace XamarinApis.ViewModels
         {
             this.service = service;
         }
+
+        public DoctorDetailsViewModel()
+        {
+            this.service = new ServiceApiDoctores();
+        }
+
         public Command DeleteDoctor
         {
             get

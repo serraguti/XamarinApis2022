@@ -15,6 +15,9 @@
             <Label Text="{Binding Doctor.Salario
                 , StringFormat='Salario: {0}'}"
                    FontSize="30" TextColor="Green"/>
+            <Button Text="Eliminar"
+                    TextColor="Red"
+                    Command="{Binding DeleteDoctor}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

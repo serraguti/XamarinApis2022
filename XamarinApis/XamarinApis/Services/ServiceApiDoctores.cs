@@ -21,6 +21,13 @@ namespace XamarinApis.Services
                 new MediaTypeWithQualityHeaderValue("application/json");
         }
 
+        public ServiceApiDoctores()
+        {
+            this.UrlApi = "https://apicruddoctores.azurewebsites.net/";
+            this.Header =
+                new MediaTypeWithQualityHeaderValue("application/json");
+        }
+
         private async Task<T> CallApiAsync<T>(string request)
         {
             using (HttpClient client = new HttpClient())
