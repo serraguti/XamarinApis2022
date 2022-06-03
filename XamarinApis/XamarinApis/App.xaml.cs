@@ -22,8 +22,11 @@ namespace XamarinApis
         public App()
         {
             InitializeComponent();
-
-            MainPage = App.ServiceLocator.MainDoctoresView;
+            MainDoctores maindoctores =
+                App.ServiceLocator.MainDoctoresView;
+            maindoctores.Detail =
+                new NavigationPage((Page)Activator.CreateInstance(typeof(MainPage)));
+            MainPage = maindoctores;
         }
 
         protected override void OnStart()
