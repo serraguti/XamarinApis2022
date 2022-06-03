@@ -63,8 +63,8 @@ namespace XamarinApis.ViewModels
             get { return this._Doctor; }
             set {
                 this._Doctor = value;
-                //this._Doctor.IsFavorite 
-                //    = this.helperUtilities.IsFavoriteDoctor(_Doctor.IdDoctor);
+                this._Doctor.IsFavorite
+                    = this.helperUtilities.IsFavoriteDoctor(_Doctor.IdDoctor);
                 OnPropertyChanged("Doctor");
             }
         }

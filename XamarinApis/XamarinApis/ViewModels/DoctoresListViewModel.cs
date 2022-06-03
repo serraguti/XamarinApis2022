@@ -130,11 +130,11 @@ namespace XamarinApis.ViewModels
             List<Doctor> data =
                 await this.service.GetDoctoressAsync();
             //BUSCAR SI LOS DOCTORES QUE HEMOS TRAIDO SON FAVORITOS
-            //foreach (Doctor doc in data)
-            //{
-            //    doc.IsFavorite =
-            //        this.helperUtilities.IsFavoriteDoctor(doc.IdDoctor);
-            //}
+            foreach (Doctor doc in data)
+            {
+                doc.IsFavorite =
+                    this.helperUtilities.IsFavoriteDoctor(doc.IdDoctor);
+            }
             this.Doctores =
             new ObservableCollection<Doctor>(data);
         }

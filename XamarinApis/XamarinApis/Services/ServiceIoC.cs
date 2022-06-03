@@ -22,12 +22,16 @@ namespace XamarinApis.Services
         private void RegisterDependencies()
         {
             ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterType<MainDoctores>().SingleInstance();
+
             //REGISTRAMOS TODO LO QUE VAYAMOS A INYECTAR
             builder.RegisterType<ServiceApiDoctores>();
             builder.RegisterType<DoctoresListViewModel>();
             builder.RegisterType<DoctorDetailsViewModel>();
-            builder.RegisterType<SessionService>().SingleInstance();
+            builder.RegisterType<NuevoDoctorViewModel>();
             builder.RegisterType<DoctoresFavoritosViewModel>();
+            builder.RegisterType<MainDoctoresViewModel>();
+            builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<HelperUtilities>();
             //BUSCAMOS EL FICHERO DE SETTINGS
             string resourceName = "XamarinApis.appsettings.json";
@@ -42,6 +46,30 @@ namespace XamarinApis.Services
             //INYECCION DE DEPENDENCIAS
             builder.Register<IConfiguration>(x => configuration);
             this.container = builder.Build();
+        }
+
+        public MainDoctores MainDoctoresView
+        {
+            get
+            {
+                return this.container.Resolve<MainDoctores>();
+            }
+        }
+
+        public MainDoctoresViewModel MainDoctoresViewModel
+        {
+            get
+            {
+                return this.container.Resolve<MainDoctoresViewModel>();
+            }
+        }
+
+        public NuevoDoctorViewModel NuevoDoctorViewModel
+        {
+            get
+            {
+                return this.container.Resolve<NuevoDoctorViewModel>();
+            }
         }
 
         public HelperUtilities HelperUtilities

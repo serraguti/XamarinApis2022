@@ -22,16 +22,18 @@
                     Command="{Binding MostrarFavoritos}"
                     TextColor="Blue"/>
             <ListView ItemsSource="{Binding Doctores}"
-                      RowHeight="120">
+                      RowHeight="150">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Apellido}"
                                        FontSize="25" TextColor="Blue"/>
+                                    
                                 <Image Source="{Binding IsFavorite
                                     , Converter={StaticResource converterfavoritos}}"
                                        WidthRequest="25" HeightRequest="25"/>
+                                <StackLayout Orientation="Vertical">
                                     <ImageButton Source="details.png" 
                                              WidthRequest="50"
  Command="{Binding BindingContext.ShowDoctor, Source={x:Reference stackDoctores}}"
@@ -42,11 +44,13 @@ CommandParameter="{Binding IdDoctor}"
                                         TextColor="Blue"
 Command="{Binding BindingContext.SeleccionarFavorito,Source={x:Reference stackDoctores}}"                                        
 CommandParameter="{Binding .}"/>
-                                <Button 
+                                    <Button 
  Command="{Binding BindingContext.ShowDoctor, Source={x:Reference stackDoctores}}"
 CommandParameter="{Binding IdDoctor}"                                    
                                     Text="Details"
                                     HorizontalOptions="End"/>
+
+                                </StackLayout>
                                 <Button HorizontalOptions="End"
                                         Text="Delete"
                                         TextColor="Red"

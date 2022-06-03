@@ -13,16 +13,18 @@ namespace XamarinApis.Models
         public string Especialidad { get; set; }
         public int Salario { get; set; }
 
-        private bool _IsFavorite;
-        public bool IsFavorite
-        {
-            get { return this._IsFavorite; }
-            set { 
-                HelperUtilities helper =
-                App.ServiceLocator.HelperUtilities;
-                this._IsFavorite =
-                    helper.IsFavoriteDoctor(this.IdDoctor);
-            }
-        }
+        public bool IsFavorite { get; set; }
+
+        //private bool _IsFavorite;
+        //public bool IsFavorite
+        //{
+        //    get { return this._IsFavorite; }
+        //    set {
+        //        HelperUtilities helper =
+        //        App.ServiceLocator.HelperUtilities;
+        //        this._IsFavorite =
+        //            helper.IsFavoriteDoctor(this.IdDoctor);
+        //    }
+        //}
     }
 }
