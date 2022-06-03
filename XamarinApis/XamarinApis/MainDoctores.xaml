@@ -6,7 +6,7 @@
                   xmlns:behaviorspack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack">
     <MasterDetailPage.Master>
         <ContentPage BackgroundColor="LightBlue"
-                     Title="App Doctores" 
+                     Title="App Doctores" x:Name="contentMenu"
 BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
             , Path=MainDoctoresViewModel}">
             <StackLayout Orientation="Vertical">
@@ -29,6 +29,12 @@ BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal"
                                              Spacing="20">
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+Command="{Binding BindingContext.PaginaSeleccionada
+,Source={x:Reference contentMenu}}"
+CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>-->
                                     <Image Source="{Binding Icono}"/>
                                     <Label Text="{Binding Titulo}"
                                            FontSize="Medium"

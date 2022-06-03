@@ -53,19 +53,18 @@ namespace XamarinApis.ViewModels
         {
             get
             {
-                return new Command(async() =>
+                return new Command((seleccionado) =>
                 {
-                    await
-                    Application.Current.MainPage.DisplayAlert
-                    ("Alert", "Estoy aqui", "Ok");
+                    //await
+                    //Application.Current.MainPage.DisplayAlert
+                    //("Alert", "Estoy aqui", "Ok");
                     MainDoctores masterPage = App.ServiceLocator.MainDoctoresView;
-                    ListView lsv = (ListView)masterPage.FindByName("lsvMenu");
-                    //var item = (MasterPageItem)
-                    //  lsv.SelectedItem;
-                    //var tipo = item.Tipo;
-                    //masterPage.Detail =
-                    //    new NavigationPage((Page)Activator.CreateInstance(tipo));
-                    //masterPage.IsPresented = false;
+                    //ListView lsv = (ListView)masterPage.FindByName("lsvMenu");
+                    var item = (MasterPageItem)seleccionado;
+                    var tipo = item.Tipo;
+                    masterPage.Detail =
+                        new NavigationPage((Page)Activator.CreateInstance(tipo));
+                    masterPage.IsPresented = false;
                 });
             }
         }
